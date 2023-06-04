@@ -67,9 +67,11 @@ var splashTexts = [
   "Cookies are the best!",
   "Click me for more cookies!",
   "Keep clicking those cookies!",
-  "Upgrade your grandma to get more cookies!",
+  "Upgrade to get more cookies!",
   "Double-clicking is twice as fun!",
-  "More workers, more cookies!"
+  "More workers, more cookies!",
+  "Just in ohio!",
+  "Yes, I got 99% of the splash texts from Chat GPT"
 ];
 
 function getRandomSplashText() {
