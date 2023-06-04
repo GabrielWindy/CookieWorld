@@ -11,6 +11,6 @@ I've added an api so you can mod without very complex things.
 How 2 run mods:
 1- Direct source code messing: Open index.html in your code editor and include some <script> tags.
 2- Browser console: Copy and paste the code in your browser console.
-Download docs.html to see documentation.
+Download docs.html to see documentation. Or <a href="https://gabrielwindy.github.io/CookieWorld/docs.html">click me</a> to enter the online one.
 
   
