@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Modding API Documentation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 5px;
+    }
+
+    pre {
+      background-color: #f2f2f2;
+      padding: 10px;
+      overflow-x: auto;
+    }
+
+    .code {
+      font-family: monospace;
+      background-color: #f2f2f2;
+      padding: 5px;
+    }
+
+    .button {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+
+    .score {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .worker {
+      margin-bottom: 10px;
+    }
+
+    .worker button {
+      display: block;
+      margin-top: 5px;
+    }
+
+    .upgrade {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Modding API Documentation</h1>
+
+  <h2>modApi</h2>
+  <p>An object that provides methods and events for modding the game.</p>
+
+  <h2>Methods</h2>
+
+  <h3><code>addWorker(workerType, workerData)</code></h3>
+  <p>Adds a worker of the specified type with the provided data.</p>
+  <ul>
+    <li><code>workerType</code> (string): The type or name of the worker.</li>
+    <li><code>workerData</code> (object): The data for the worker, including <code>count</code>, <code>cost</code>, <code>cps</code>, and <code>level</code>.</li>
+  </ul>
+  <p>Example usage:</p>
+  <pre class="code"><code>modApi.addWorker("Cursor", { count: 0, cost: 20, cps: 1, level: 1 });</code></pre>
+
+  <h3><code>addUpgrade(upgradeType, upgradeData)</code></h3>
+  <p>Adds an upgrade of the specified type with the provided data.</p>
+  <ul>
+    <li><code>upgradeType</code> (string): The type or name of the upgrade.</li>
+    <li><code>upgradeData</code> (object): The data for the upgrade, including <code>count</code>, <code>cost</code>, and <code>multiplier</code>.</li>
+  </ul>
+  <p>Example usage:</p>
+  <pre class="code"><code>modApi.addUpgrade("Double Click", { count: 0, cost: 10, multiplier: 2 });</code></pre>
+
+  <h3><code>modifyWorker(workerType, modifierFunction)</code></h3>
+  <p>Modifies the specified worker using the provided modifier function.</p>
+  <ul>
+    <li><code>workerType</code> (string): The type or name of the worker to modify.</li>
+    <li><code>modifierFunction</code> (function): A function that takes the worker object as a parameter and modifies its properties.</li>
+  </ul>
+  <p>Example usage:</p>
+  <pre class="code"><code>modApi.modifyWorker("Cursor", function(worker) {
+  worker.count++;
+  worker.level++;
+});</code></pre>
+
+  <h3><code>modifyUpgrade(upgradeType, modifierFunction)</code></h3>
+  <p>Modifies the specified upgrade using the provided modifier function.</p>
+  <ul>
+    <li><code>upgradeType</code> (string): The type or name of the upgrade to modify.</li>
+    <li><code>modifierFunction</code> (function): A function that takes the upgrade object as a parameter and modifies its properties.</li>
+  </ul>
+  <p>Example usage:</p>
+  <pre class="code"><code>modApi.modifyUpgrade("Double Click", function(upgrade) {
+  upgrade.count++;
+  upgrade.multiplier *= 2;
+});</code></pre>
+
+  <h3><code>modifyPrice(workerType, newCost)</code></h3>
+  <p>Modifies the cost of the specified worker to the new cost value.</p>
+  <ul>
+    <li><code>workerType</code> (string): The type or name of the worker.</li>
+    <li><code>newCost</code> (number): The new cost value for the worker.</li>
+  </ul>
+  <p>Example usage:</p>
+  <pre class="code"><code>modApi.modifyPrice("Cursor", 30);</code></pre>
+
+  <h3><code>onEvent(eventType, eventHandler)</code></h3>
+  <p>Adds an event handler function to the specified event type.</p>
+  <ul>
+    <li><code>eventType</code> (string): The type or name of the event.</li>
+    <li><code>eventHandler</code> (function): The function to be called when the event is triggered.</li>
+  </ul>
+  <p>Example usage:</p>
+  <pre class="code"><code>modApi.onEvent("scoreIncrease", function(score) {
+  console.log("Score increased: " + score);
+});</code></pre>
+
+  <h3><code>triggerEvent(eventType, eventData)</code></h3>
+  <p>Triggers the specified event with the provided event data.</p>
+  <ul>
+    <li><code>eventType</code> (string): The type or name of the event to trigger.</li>
+    <li><code>eventData</code> (any): The data to pass to the event handler functions.</li>
+  </ul>
+  <p>Example usage:</p>
+  <pre class="code"><code>modApi.triggerEvent("scoreIncrease", score);</code></pre>
+
+  <h3><code>renderText(text, targetElementId)</code></h3>
+  <p>Renders the provided text inside the specified target element.</p>
+  <ul>
+    <li><code>text</code> (string): The text to render.</li>
+    <li><code>targetElementId</code> (string): The ID of the target element where the text should be rendered.</li>
+  </ul>
+  <p>Example usage:</p>
+  <pre class="code"><code>modApi.renderText("Hello, world!", "myElement");</code></pre>
+
+  <h3><code>renderButton(label, clickHandler, targetElementId)</code></h3>
+  <p>Renders a button with the provided label and click handler inside the specified target element.</p>
+  <ul>
+    <li><code>label</code> (string): The label or text for the button.</li>
+    <li><code>clickHandler</code> (function): The function to be called when the button is clicked.</li>
+    <li><code>targetElementId</code> (string): The ID of the target element where the button should be rendered.</li>
+  </ul>
+  <p>Example usage:</p>
+  <pre class="code"><code>modApi.renderButton("Click me!", myClickHandler, "myElement");</code></pre>
+
+  <h2>Events</h2>
+
+  <p>The following events can be triggered using the <code>triggerEvent()</code> method:</p>
+
+  <ul>
+    <li><code>scoreIncrease</code>: Triggered when the score increases. The score value is passed as the event data.</li>
+    <li><code>cookieClicked</code>: Triggered when the cookie is clicked.</li>
+    <li><code>workerBought</code>: Triggered when a worker is bought. The worker type is passed as the event data.</li>
+    <li><code>upgradeBought</code>: Triggered when an upgrade is bought. The upgrade type is passed as the event data.</li>
+  </ul>
+
+  <h2>Example Usage</h2>
+
+  <p>Below is an example usage of the modding API:</p>
+
+  <pre class="code"><code>(function() {
+  // Add a custom worker
+  modApi.addWorker("Custom Worker", { count: 0, cost: 100, cps: 10, level: 1 });
+
+  // Modify the price of the Cursor worker
+  modApi.modifyPrice("Cursor", 30);
+
+  // Add an event handler for the "scoreIncrease" event
+  modApi.onEvent("scoreIncrease", function(score) {
+    console.log("Score increased: " + score);
+  });
+
+  // Trigger the "scoreIncrease" event
+  modApi.triggerEvent("scoreIncrease", score);
+
+  // Render a button
+  modApi.renderButton("Click me!", myClickHandler, "myElement");
+
+  // Render text
+  modApi.renderText("Hello, world!", "myElement");
+})();</code></pre>
+
+  <script>
+    // Code snippet is added here to demonstrate rendering and event triggering
+    var score = 0;
+
+    function myClickHandler() {
+      console.log("Button clicked");
+    }
+
+    function updateScore() {
+      document.getElementById("scoreValue").textContent = score;
+    }
+
+    function getRandomSplashText() {
+      var splashTexts = [
+        "Cookies are the best!",
+        "Click me for more cookies!",
+        "Keep clicking those cookies!",
+        "Upgrade your grandma to get more cookies!",
+        "Double-clicking is twice as fun!",
+        "More workers, more cookies!"
+      ];
+      var randomIndex = Math.floor(Math.random() * splashTexts.length);
+      return splashTexts[randomIndex];
+    }
+
+    function displaySplashText() {
+      var splashTextElement = document.getElementById("splashText");
+      splashTextElement.textContent = getRandomSplashText();
+    }
+
+    setInterval(function() {
+      score++;
+      updateScore();
+      modApi.triggerEvent("scoreIncrease", score);
+    }, 1000);
+
+    document.getElementById("cookie").addEventListener("click", function() {
+      score++;
+      updateScore();
+      displaySplashText();
+      modApi.triggerEvent("cookieClicked");
+    });
+
+    modApi.addWorker("Cursor", { count: 0, cost: 20, cps: 1, level: 1 });
+    modApi.addWorker("Grandma", { count: 0, cost: 100, cps: 5, level: 1 });
+
+    modApi.onEvent("workerBought", function(workerType) {
+      console.log("Worker bought: " + workerType);
+    });
+
+    modApi.onEvent("upgradeBought", function(upgradeType) {
+      console.log("Upgrade bought: " + upgradeType);
+    });
+
+    modApi.renderText("Score: ", "scoreLabel");
+    modApi.renderText(score, "scoreValue");
+    modApi.renderButton("Buy Cursor", function() {
+      modApi.triggerEvent("workerBought", "Cursor");
+    }, "buyCursorButton");
+    modApi.renderButton("Buy Grandma", function() {
+      modApi.triggerEvent("workerBought", "Grandma");
+    }, "buyGrandmaButton");
+    modApi.renderButton("Buy Double Click", function() {
+      modApi.triggerEvent("upgradeBought", "Double Click");
+    }, "buyUpgradeButton");
+    modApi.renderButton("Buy Triple Click", function() {
+      modApi.triggerEvent("upgradeBought", "Triple Click");
+    }, "buyUpgradeButton");
+  </script>
+</body>
+</html>
