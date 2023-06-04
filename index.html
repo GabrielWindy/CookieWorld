@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cookie Clicker Clone</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>Cookie Clicker Clone</h1>
+  
+  <div id="cookie" onclick="clickCookie()" title="Click me for cookies!"></div>
+  
+  <div id="score">Score: <span id="scoreValue">0</span> cookies</div>
+  
+  <h2>Upgrades</h2>
+  <button onclick="buyUpgrade('Double Click')">Double Click - <span id="Double ClickButton">10</span> cookies</button>
+  <button onclick="buyUpgrade('Super Grandma')">Super Grandma - <span id="Super GrandmaButton">100</span> cookies</button>
+  
+  <h2>Workers</h2>
+  <button onclick="buyWorker('Cursor')" title="Level: 1\nCount: 0">Cursor - <span id="CursorButton">20</span> cookies</button>
+  <button onclick="buyWorker('Grandma')" title="Level: 1\nCount: 0">Grandma - <span id="GrandmaButton">50</span> cookies</button>
+  
+  <div id="splashText"></div>
+  
+  <script src="script.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
