@@ -1,7 +1,7 @@
 # CookieWorld
 aka cookie clicker from chernobyl
 # Installing
-Well, install only the files that are not in a folder, then double click index.html with a browser, like firefox to open it and play it.
+Well, install only the files that are not in a folder, then double click index.html with a browser, like firefox to open it and play it. Or <a href="https://gabrielwindy.github.io/CookieWorld/">click here</a> to play the web version.
 
 # How 2 play
 Well, click the 'cookie' (spoiler: It is a gray circle) to earn score! Buy some upgrades and workers.
